@@ -2,6 +2,12 @@
 
 [![GitHub Actions](https://img.shields.io/github/workflow/status/sethvargo/cloud-run-docker-mirror/Test?style=flat-square)](https://github.com/sethvargo/cloud-run-docker-mirror/actions?query=workflow%3ATest)
 
+**Consider using [Remote
+Repositories](https://cloud.google.com/artifact-registry/docs/repositories/remote-repo)
+or [Virtual
+Repositories](https://cloud.google.com/artifact-registry/docs/repositories/virtual-repo)
+instead!**
+
 Cloud Run Docker Mirror copies images from one Docker v2 Registry to another, as
 a service. With this service, you can:
 
