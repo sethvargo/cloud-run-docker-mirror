@@ -12,17 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Test
+name: 'test'
 
 on:
   push:
     branches:
-    - main
-    tags:
-    - '*'
+      - 'main'
   pull_request:
     branches:
-    - main
+      - 'main'
+  workflow_dispatch:
 
 jobs:
   unit:
@@ -34,25 +33,22 @@ jobs:
         - 'ubuntu-latest'
         - 'windows-latest'
 
-    runs-on: ${{ matrix.os }}
+    runs-on: '${{ matrix.os }}'
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: 'actions/checkout@v3'
 
-    - uses: actions/setup-go@v2
+    - uses: 'actions/setup-go@v3'
       with:
-        go-version: '1.15'
+        go-version: '1.19'
 
-    - uses: actions/cache@v2
+    - run: 'go mod download'
+
+    - uses: 'golangci/golangci-lint-action@v3'
+      if: ${{ runner.os == 'Linux' }}
       with:
-        path: ~/go/pkg/mod
-        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-        restore-keys: |
-          ${{ runner.os }}-go-
-
-    - name: Lint
-      run: make fmtcheck staticcheck spellcheck
-      if: ${{ runner.os != 'Windows' }}
+        only-new-issues: 'true'
+        skip-cache: 'true'
 
     - name: Test
       run: make test

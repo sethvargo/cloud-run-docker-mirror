@@ -22,11 +22,12 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"os/signal"
 	"strings"
+	"syscall"
 	"time"
 
 	"github.com/google/go-containerregistry/pkg/gcrane"
-	"github.com/sethvargo/go-signalcontext"
 )
 
 var (
@@ -35,7 +36,8 @@ var (
 )
 
 func main() {
-	ctx, cancel := signalcontext.OnInterrupt()
+	ctx, cancel := signal.NotifyContext(context.Background(),
+		syscall.SIGINT, syscall.SIGTERM)
 
 	err := realMain(ctx)
 	cancel()

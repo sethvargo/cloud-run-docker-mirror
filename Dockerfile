@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM golang:1.15 AS builder
+FROM golang:1.19 AS builder
 
 RUN apt-get -qq update && apt-get -yqq install upx
 
