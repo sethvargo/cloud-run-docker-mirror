@@ -13,14 +13,14 @@
 # limitations under the License.
 
 build-push:
-	@podman buildx build \
+	@docker buildx build \
 		--platform linux/arm64 \
 		--tag asia-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server:latest \
 		--tag docker.pkg.github.com/sethvargo/cloud-run-docker-mirror/server:latest \
 		--tag gcr.io/vargolabs/cloud-run-docker-mirror/server:latest \
 		--tag us-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server:latest \
 	  --tag europe-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server:latest \
-		--push \
+	  --push \
 		.
 .PHONY: build-push
 
