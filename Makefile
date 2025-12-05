@@ -20,6 +20,7 @@ build-push:
 		--tag gcr.io/vargolabs/cloud-run-docker-mirror/server:latest \
 		--tag us-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server:latest \
 	  --tag europe-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server:latest \
+		--push \
 		.
 .PHONY: build-push
 
