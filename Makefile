@@ -13,18 +13,15 @@
 # limitations under the License.
 
 build-push:
-	@docker build \
-		--tag asia-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server \
-		--tag docker.pkg.github.com/sethvargo/cloud-run-docker-mirror/server \
-		--tag gcr.io/vargolabs/cloud-run-docker-mirror/server \
-		--tag us-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server \
-	  --tag europe-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server \
+	@podman buildx build \
+		--platform linux/arm64 \
+		--tag asia-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server:latest \
+		--tag docker.pkg.github.com/sethvargo/cloud-run-docker-mirror/server:latest \
+		--tag gcr.io/vargolabs/cloud-run-docker-mirror/server:latest \
+		--tag us-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server:latest \
+	  --tag europe-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server:latest \
 		.
-	@docker push asia-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server
-	@docker push docker.pkg.github.com/sethvargo/cloud-run-docker-mirror/server
-	@docker push europe-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server
-	@docker push gcr.io/vargolabs/cloud-run-docker-mirror/server
-	@docker push us-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server
+.PHONY: build-push
 
 test:
 	@go test \

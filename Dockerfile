@@ -12,14 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM golang:1.24 AS builder
+FROM golang:1.25.5 AS builder
 
 RUN apt-get -qq update && apt-get -yqq install upx
 
 ENV GO111MODULE=on \
-  CGO_ENABLED=0 \
-  GOOS=linux \
-  GOARCH=amd64
+  CGO_ENABLED=0
 
 WORKDIR /src
 COPY go.mod .
