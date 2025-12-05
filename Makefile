@@ -14,12 +14,8 @@
 
 build-push:
 	@docker buildx build \
-		--platform linux/arm64 \
-		--tag asia-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server:latest \
-		--tag docker.pkg.github.com/sethvargo/cloud-run-docker-mirror/server:latest \
-		--tag gcr.io/vargolabs/cloud-run-docker-mirror/server:latest \
-		--tag us-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server:latest \
-	  --tag europe-docker.pkg.dev/vargolabs/cloud-run-docker-mirror/server:latest \
+		--platform linux/amd64,linux/arm64 \
+		--tag ghcr.io/sethvargo/cloud-run-docker-mirror/server:latest \
 	  --push \
 		.
 .PHONY: build-push

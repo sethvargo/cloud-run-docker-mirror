@@ -39,5 +39,5 @@ FROM scratch
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /bin/mirror /bin/mirror
 
-ENV PORT 8080
+ENV PORT=8080
 ENTRYPOINT ["/bin/mirror"]
